@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngryWasp.Serializer.Serializers", "Src\AngryWasp.Serializer.Serializers\AngryWasp.Serializer.Serializers.csproj", "{DEC59B99-A491-4EDE-B25D-5560F921A3A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngryWasp.Serializer", "Src\AngryWasp.Serializer\AngryWasp.Serializer.csproj", "{31D92BEB-464A-404F-BD73-1C2735CAD2F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31D92BEB-464A-404F-BD73-1C2735CAD2F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31D92BEB-464A-404F-BD73-1C2735CAD2F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31D92BEB-464A-404F-BD73-1C2735CAD2F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31D92BEB-464A-404F-BD73-1C2735CAD2F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEC59B99-A491-4EDE-B25D-5560F921A3A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEC59B99-A491-4EDE-B25D-5560F921A3A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEC59B99-A491-4EDE-B25D-5560F921A3A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEC59B99-A491-4EDE-B25D-5560F921A3A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

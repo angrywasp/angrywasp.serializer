@@ -1,0 +1,6 @@
+[submodule "External/AngryWasp.Logger"]
+	path = External/AngryWasp.Logger
+	url = https://bitbucket.org/angrywasp/angrywasp.logger.git
+[submodule "External/AngryWasp.Helpers"]
+	path = External/AngryWasp.Helpers
+	url = https://bitbucket.org/angrywasp/angrywasp.helpers.git

@@ -1,0 +1,5 @@
+Bin/Debug
+Bin/Release
+
+Src/AngryWasp.Serializer/obj
+Src/AngryWasp.Serializer.Serializers/obj
