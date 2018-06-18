@@ -28,12 +28,6 @@ namespace AngryWasp.Serializer
 			else
 				Log.Instance.Write(Log_Severity.Error, "Serializer assembly 'AngryWasp.Serializer.Serializers.dll' missing. Reinstall 'AngryWasp.Serializer' nuget package and rebuild");
 
-			assemblyPath = Path.Combine(loc, "AngryWasp.Serializer.Extras.dll");
-			if (File.Exists(assemblyPath))
-				AddSerializerAssembly(assemblyPath);
-			else
-				Log.Instance.Write(Log_Severity.Info, "Serializer assembly 'AngryWasp.Serializer.Extras.dll' missing. Install the 'AngryWasp.Serializer.Extras' nuget package for extra serializers");
-
 			isInitialized = true;
 		}
 

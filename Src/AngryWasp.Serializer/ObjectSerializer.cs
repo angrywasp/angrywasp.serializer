@@ -36,7 +36,12 @@ namespace AngryWasp.Serializer
             nb.Run(obj);
             reverseNsLookup = nb.ReverseNamespaceLookup;
 
-            XDocument document = XHelper.CreateDocument("Content", nb.Namespaces);
+            XDocument document = XHelper.CreateDocument("Content", nb.Namespaces,  null, new string[]
+            {
+                "Created by Angry Wasp's XML Serializer",
+                "Copyright 2015 Angry Wasp",
+                "https://bitbucket.org/angrywasp/angrywasp.serializer"
+            });
             assetElement = XHelper.CreateElement(document.Root, reverseNsLookup[obj.GetType()].Name, "Asset");
             sharedElement = XHelper.CreateElement(document.Root, null, "Shared");
 
