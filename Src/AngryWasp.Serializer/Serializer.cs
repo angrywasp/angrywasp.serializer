@@ -25,29 +25,22 @@ namespace AngryWasp.Serializer
 			string assemblyPath = Path.Combine(loc, "AngryWasp.Serializer.Serializers.dll");
 			if (File.Exists(assemblyPath))
 				AddSerializerAssembly(assemblyPath);
-			else
-				Log.Instance.Write(Log_Severity.Error, "Serializer assembly 'AngryWasp.Serializer.Serializers.dll' missing. Reinstall 'AngryWasp.Serializer' nuget package and rebuild");
 
 			isInitialized = true;
 		}
 
 		public static void AddSerializerAssembly(string serializerAssembly)
 		{
-			//Log.Instance.Write("Serializer.AddSerializerAssembly - Loading '{0}'", serializerAssembly);
-
 			try
 			{
 				if (loadedAssemblies.Contains(serializerAssembly))
-				{
-					//Log.Instance.Write("Serializer.AddSerializerAssembly - '{0}' already loaded", serializerAssembly);
 					return;
-				}
 
 				Assembly a = ReflectionHelper.Instance.LoadAssemblyFile(serializerAssembly);
 
 				if (a == null)
 				{
-					Log.Instance.Write(Log_Severity.Error, "Serializer.AddSerializerAssembly - Could not find assembly file '{0}'", serializerAssembly);
+					Log.Instance.Write(Log_Severity.Error, $"Serializer.AddSerializerAssembly - Could not find assembly file '{serializerAssembly}'");
 					return;
 				}
 
@@ -76,29 +69,18 @@ namespace AngryWasp.Serializer
 				}
 
 				loadedAssemblies.Add(serializerAssembly);
-				//Log.Instance.Write("Serializer.AddSerializerAssembly - Loaded '{0}'", serializerAssembly);;
 			}
 			catch (Exception ex)
 			{
-				Log.Instance.Write("Serializer.AddSerializerAssembly - Loading Failed '{0}'", serializerAssembly);
-				Log.Instance.WriteFatalException(ex);
+				Log.Instance.WriteFatalException(ex, $"Serializer.AddSerializerAssembly - Loading Failed '{serializerAssembly}'");
 			}
 		}
 
-		public static bool HasSerializer(Type type, bool preferBinarySerialization)
-		{
-			return preferBinarySerialization ? HasBinarySerializer(type) : HasXmlSerializer(type);
-		}
+		public static bool HasSerializer(Type type, bool preferBinarySerialization) => preferBinarySerialization ? HasBinarySerializer(type) : HasXmlSerializer(type);
 
-		public static bool HasXmlSerializer(Type type)
-		{
-			return serializers.ContainsKey(type);
-		}
+		public static bool HasXmlSerializer(Type type) => serializers.ContainsKey(type);
 
-		public static bool HasBinarySerializer(Type type)
-		{
-			return binarySerializers.ContainsKey(type);
-		}
+		public static bool HasBinarySerializer(Type type) => binarySerializers.ContainsKey(type);
 
 		public static object GetSerializer(Type type, Dictionary<Type, object> serializerCollection)
 		{

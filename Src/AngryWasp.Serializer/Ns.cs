@@ -9,15 +9,9 @@ namespace AngryWasp.Serializer
         private Type type;
         private Object_Type objType;
 
-        public string Name
-        {
-            get { return name; }
-        }
+        public string Name => name;
 
-        public Object_Type ObjectType
-        {
-            get { return objType; }
-        }
+        public Object_Type ObjectType => objType;
 
         public Type Type
         {

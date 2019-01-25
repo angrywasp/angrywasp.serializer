@@ -179,7 +179,7 @@ namespace AngryWasp.Serializer
                             {
                                 if (e.Attribute("Value") == null)
                                 {
-                                    Log.Instance.Write(Log_Severity.Warning, "{0} does not appear to be using the built in serializer. Save to update file output", ns.Type.Name);
+                                    Log.Instance.Write(Log_Severity.Warning, $"{ns.Type.Name} does not appear to be using the built in serializer. Save to update file output");
                                     object instance = Activator.CreateInstance(ns.Type);
                                     SetMembers(instance, e);
                                     return instance;
@@ -306,10 +306,7 @@ namespace AngryWasp.Serializer
             return null;
         }
 
-        private object DeserializeListCallback(XElement e, bool isBinarySerialized)
-        {
-            return SetMember(e, isBinarySerialized);
-        }
+        private object DeserializeListCallback(XElement e, bool isBinarySerialized) => SetMember(e, isBinarySerialized);
 
         #endregion
 
@@ -571,10 +568,8 @@ namespace AngryWasp.Serializer
             }
         }
 
-        private void SerializeListCallback(object obj, XElement parent, object value, bool preferBinarySerialization)
-        {
+        private void SerializeListCallback(object obj, XElement parent, object value, bool preferBinarySerialization) =>
             GetMember(obj, "Item", value.GetType(), value, parent, preferBinarySerialization);
-        }
 
         private void CreateValue(XElement element, Type type, object value, bool preferBinarySerialization)
         {

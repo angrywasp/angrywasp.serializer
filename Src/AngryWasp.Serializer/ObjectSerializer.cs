@@ -90,7 +90,7 @@ namespace AngryWasp.Serializer
             }
             catch (Exception ex)
             {
-                Log.Instance.Write(Log_Severity.Error, ex.Message + "\r\n\t" + ex.StackTrace);
+                Log.Instance.Write(Log_Severity.Error, $"{ex.Message}\r\n\t{ex.StackTrace}");
                 return Deserialize_Result.Error;
             }
 
@@ -123,7 +123,7 @@ namespace AngryWasp.Serializer
             }
             catch (Exception ex)
             {
-                Log.Instance.Write(Log_Severity.Error, ex.Message + "\r\n\t" + ex.StackTrace);
+                Log.Instance.Write(Log_Severity.Error, $"{ex.Message}\r\n\t{ex.StackTrace}");
                 return Deserialize_Result.Error;
             }
 
@@ -145,7 +145,7 @@ namespace AngryWasp.Serializer
                 return t;
 
             //failed. we do not know what this type is
-            Log.Instance.Write(Log_Severity.Error, "Failed to file type '{0}' in assembly cache", assemblyQualifiedName);
+            Log.Instance.Write(Log_Severity.Error, $"Failed to file type '{assemblyQualifiedName}' in assembly cache");
             return null;
         }
 

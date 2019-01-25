@@ -7,15 +7,9 @@ namespace AngryWasp.Serializer.Serializers
 {
     public class ByteArraySerializer : IBinarySerializer<byte[]>
     {
-        public BinarySerializerData Serialize(byte[] value)
-        {
-            return new BinarySerializerData(FileHelper.Compress(value), value.Length);
-        }
+        public BinarySerializerData Serialize(byte[] value) => new BinarySerializerData(FileHelper.Compress(value), value.Length);
 
-        public byte[] Deserialize(BinarySerializerData data)
-        {
-            return FileHelper.Decompress(data.Data, data.Length);
-        }
+        public byte[] Deserialize(BinarySerializerData data) => FileHelper.Decompress(data.Data, data.Length);
     }
 
     public class Int32ArraySerializer : IBinarySerializer<int[]>
