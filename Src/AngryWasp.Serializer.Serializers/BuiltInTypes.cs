@@ -64,7 +64,7 @@ namespace AngryWasp.Serializer.Serializers
     {
         public string Serialize(ulong value) => value.ToString();
 
-        public ulong Deserialize(string value) => ulong.Parse(value)
+        public ulong Deserialize(string value) => ulong.Parse(value);
     }
 
     public class LongSerializer : ISerializer<long>
