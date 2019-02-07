@@ -5,14 +5,14 @@ using AngryWasp.Helpers;
 
 namespace AngryWasp.Serializer.Serializers
 {
-    public class ByteArraySerializer : IBinarySerializer<byte[]>
+    public class ByteArrayBinarySerializer : IBinarySerializer<byte[]>
     {
         public BinarySerializerData Serialize(byte[] value) => new BinarySerializerData(FileHelper.Compress(value), value.Length);
 
         public byte[] Deserialize(BinarySerializerData data) => FileHelper.Decompress(data.Data, data.Length);
     }
 
-    public class Int32ArraySerializer : IBinarySerializer<int[]>
+    public class Int32ArrayBinarySerializer : IBinarySerializer<int[]>
     {
         private const int stride = sizeof(int);
 
@@ -38,7 +38,7 @@ namespace AngryWasp.Serializer.Serializers
         }
     }
 
-    public class UInt16ListSerializer : IBinarySerializer<List<ushort>>
+    public class UInt16ListBinarySerializer : IBinarySerializer<List<ushort>>
     {
         private const int stride = sizeof(short);
 
