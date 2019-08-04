@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using AngryWasp.Helpers;
@@ -43,14 +45,11 @@ namespace AngryWasp.Serializer.Serializers
 
         public ushort[] Deserialize(string value)
         {
-            int stride = 4;
+            string[] chunks = value.Split(4).ToArray();
+            ushort[] ret = new ushort[chunks.Length];
 
-            ushort[] ret = new ushort[value.Length / stride];
-            for (int i = 0; i < value.Length; i += stride)
-            {
-                string sub = value.Substring(i, i + stride);
-                ret[i] = BitShifter.ToUShort(sub.FromByteHex());
-            }
+            for (int i = 0; i < chunks.Length; i++)
+                ret[i] = BitShifter.ToUShort(chunks[i].FromByteHex());
 
             return ret;
         }
@@ -69,14 +68,11 @@ namespace AngryWasp.Serializer.Serializers
 
         public short[] Deserialize(string value)
         {
-            int stride = 4;
+            string[] chunks = value.Split(4).ToArray();
+            short[] ret = new short[chunks.Length];
 
-            short[] ret = new short[value.Length / stride];
-            for (int i = 0; i < value.Length; i += stride)
-            {
-                string sub = value.Substring(i, i + stride);
-                ret[i] = BitShifter.ToShort(sub.FromByteHex());
-            }
+            for (int i = 0; i < chunks.Length; i++)
+                ret[i] = BitShifter.ToShort(chunks[i].FromByteHex());
 
             return ret;
         }
@@ -95,14 +91,11 @@ namespace AngryWasp.Serializer.Serializers
 
         public uint[] Deserialize(string value)
         {
-            int stride = 8;
+            string[] chunks = value.Split(8).ToArray();
+            uint[] ret = new uint[chunks.Length];
 
-            uint[] ret = new uint[value.Length / stride];
-            for (int i = 0; i < value.Length; i += stride)
-            {
-                string sub = value.Substring(i, i + stride);
-                ret[i] = BitShifter.ToUInt(sub.FromByteHex());
-            }
+            for (int i = 0; i < chunks.Length; i++)
+                ret[i] = BitShifter.ToUInt(chunks[i].FromByteHex());
 
             return ret;
         }
@@ -121,14 +114,11 @@ namespace AngryWasp.Serializer.Serializers
 
         public int[] Deserialize(string value)
         {
-            int stride = 8;
+            string[] chunks = value.Split(8).ToArray();
+            int[] ret = new int[chunks.Length];
 
-            int[] ret = new int[value.Length / stride];
-            for (int i = 0; i < value.Length; i += stride)
-            {
-                string sub = value.Substring(i, i + stride);
-                ret[i] = BitShifter.ToInt(sub.FromByteHex());
-            }
+            for (int i = 0; i < chunks.Length; i++)
+                ret[i] = BitShifter.ToInt(chunks[i].FromByteHex());
 
             return ret;
         }
@@ -147,14 +137,11 @@ namespace AngryWasp.Serializer.Serializers
 
         public ulong[] Deserialize(string value)
         {
-            int stride = 16;
+            string[] chunks = value.Split(16).ToArray();
+            ulong[] ret = new ulong[chunks.Length];
 
-            ulong[] ret = new ulong[value.Length / stride];
-            for (int i = 0; i < value.Length; i += stride)
-            {
-                string sub = value.Substring(i, i + stride);
-                ret[i] = BitShifter.ToULong(sub.FromByteHex());
-            }
+            for (int i = 0; i < chunks.Length; i++)
+                ret[i] = BitShifter.ToULong(chunks[i].FromByteHex());
 
             return ret;
         }
@@ -173,16 +160,30 @@ namespace AngryWasp.Serializer.Serializers
 
         public long[] Deserialize(string value)
         {
-            int stride = 16;
+            string[] chunks = value.Split(16).ToArray();
+            long[] ret = new long[chunks.Length];
 
-            long[] ret = new long[value.Length / stride];
-            for (int i = 0; i < value.Length; i += stride)
-            {
-                string sub = value.Substring(i, i + stride);
-                ret[i] = BitShifter.ToLong(sub.FromByteHex());
-            }
+            for (int i = 0; i < chunks.Length; i++)
+                ret[i] = BitShifter.ToLong(chunks[i].FromByteHex());
 
             return ret;
+        }
+    }
+
+    public static class StringExtensions
+    {    
+        public static IEnumerable<string> Split(this string str, int length)
+        {
+            if (String.IsNullOrEmpty(str)) throw new ArgumentException();
+            if (length < 1) throw new ArgumentException();
+
+            for (int i = 0; i < str.Length; i += length)
+            {
+                if (length + i > str.Length)
+                    length = str.Length - i;
+
+                yield return str.Substring(i, length);
+            }
         }
     }
 
