@@ -6,12 +6,12 @@ using AngryWasp.Helpers;
 
 namespace AngryWasp.Serializer.Serializers
 {
-    public class BoolArraySerializer : ISerializer<bool[]>
+    /*public class BoolArraySerializer : ISerializer<bool[]>
     {
         public string Serialize(bool[] value) => throw new NotImplementedException();
 
         public bool[] Deserialize(string value) => throw new NotImplementedException();
-    }
+    }*/
 
     public class ByteArraySerializer : ISerializer<byte[]>
     {
@@ -32,8 +32,6 @@ namespace AngryWasp.Serializer.Serializers
 
     public class UshortArraySerializer : ISerializer<ushort[]>
     {
-        private const int STRIDE = 2;
-
         public string Serialize(ushort[] value)
         {
             StringBuilder sb = new StringBuilder();
@@ -45,10 +43,12 @@ namespace AngryWasp.Serializer.Serializers
 
         public ushort[] Deserialize(string value)
         {
-            ushort[] ret = new ushort[value.Length / STRIDE];
-            for (int i = 0; i < value.Length; i += STRIDE)
+            int stride = 4;
+
+            ushort[] ret = new ushort[value.Length / stride];
+            for (int i = 0; i < value.Length; i += stride)
             {
-                string sub = value.Substring(i, i + STRIDE);
+                string sub = value.Substring(i, i + stride);
                 ret[i] = BitShifter.ToUShort(sub.FromByteHex());
             }
 
@@ -58,8 +58,6 @@ namespace AngryWasp.Serializer.Serializers
 
     public class ShortArraySerializer : ISerializer<short[]>
     {
-        private const int STRIDE = 2;
-
         public string Serialize(short[] value)
         {
             StringBuilder sb = new StringBuilder();
@@ -71,10 +69,12 @@ namespace AngryWasp.Serializer.Serializers
 
         public short[] Deserialize(string value)
         {
-            short[] ret = new short[value.Length / STRIDE];
-            for (int i = 0; i < value.Length; i += STRIDE)
+            int stride = 4;
+
+            short[] ret = new short[value.Length / stride];
+            for (int i = 0; i < value.Length; i += stride)
             {
-                string sub = value.Substring(i, i + STRIDE);
+                string sub = value.Substring(i, i + stride);
                 ret[i] = BitShifter.ToShort(sub.FromByteHex());
             }
 
@@ -84,8 +84,6 @@ namespace AngryWasp.Serializer.Serializers
 
     public class UintArraySerializer : ISerializer<uint[]>
     {
-        private const int STRIDE = 4;
-
         public string Serialize(uint[] value)
         {
             StringBuilder sb = new StringBuilder();
@@ -97,10 +95,12 @@ namespace AngryWasp.Serializer.Serializers
 
         public uint[] Deserialize(string value)
         {
-            uint[] ret = new uint[value.Length / STRIDE];
-            for (int i = 0; i < value.Length; i += STRIDE)
+            int stride = 8;
+
+            uint[] ret = new uint[value.Length / stride];
+            for (int i = 0; i < value.Length; i += stride)
             {
-                string sub = value.Substring(i, i + STRIDE);
+                string sub = value.Substring(i, i + stride);
                 ret[i] = BitShifter.ToUInt(sub.FromByteHex());
             }
 
@@ -110,8 +110,6 @@ namespace AngryWasp.Serializer.Serializers
 
     public class IntArraySerializer : ISerializer<int[]>
     {
-        private const int STRIDE = 4;
-
         public string Serialize(int[] value)
         {
             StringBuilder sb = new StringBuilder();
@@ -123,10 +121,12 @@ namespace AngryWasp.Serializer.Serializers
 
         public int[] Deserialize(string value)
         {
-            int[] ret = new int[value.Length / STRIDE];
-            for (int i = 0; i < value.Length; i += STRIDE)
+            int stride = 8;
+
+            int[] ret = new int[value.Length / stride];
+            for (int i = 0; i < value.Length; i += stride)
             {
-                string sub = value.Substring(i, i + STRIDE);
+                string sub = value.Substring(i, i + stride);
                 ret[i] = BitShifter.ToInt(sub.FromByteHex());
             }
 
@@ -136,8 +136,6 @@ namespace AngryWasp.Serializer.Serializers
 
     public class UlongArraySerializer : ISerializer<ulong[]>
     {
-        private const int STRIDE = 8;
-
         public string Serialize(ulong[] value)
         {
             StringBuilder sb = new StringBuilder();
@@ -149,10 +147,12 @@ namespace AngryWasp.Serializer.Serializers
 
         public ulong[] Deserialize(string value)
         {
-            ulong[] ret = new ulong[value.Length / STRIDE];
-            for (int i = 0; i < value.Length; i += STRIDE)
+            int stride = 16;
+
+            ulong[] ret = new ulong[value.Length / stride];
+            for (int i = 0; i < value.Length; i += stride)
             {
-                string sub = value.Substring(i, i + STRIDE);
+                string sub = value.Substring(i, i + stride);
                 ret[i] = BitShifter.ToULong(sub.FromByteHex());
             }
 
@@ -162,8 +162,6 @@ namespace AngryWasp.Serializer.Serializers
 
     public class LongArraySerializer : ISerializer<long[]>
     {
-        private const int STRIDE = 8;
-
         public string Serialize(long[] value)
         {
             StringBuilder sb = new StringBuilder();
@@ -175,10 +173,12 @@ namespace AngryWasp.Serializer.Serializers
 
         public long[] Deserialize(string value)
         {
-            long[] ret = new long[value.Length / STRIDE];
-            for (int i = 0; i < value.Length; i += STRIDE)
+            int stride = 16;
+
+            long[] ret = new long[value.Length / stride];
+            for (int i = 0; i < value.Length; i += stride)
             {
-                string sub = value.Substring(i, i + STRIDE);
+                string sub = value.Substring(i, i + stride);
                 ret[i] = BitShifter.ToLong(sub.FromByteHex());
             }
 
@@ -186,7 +186,7 @@ namespace AngryWasp.Serializer.Serializers
         }
     }
 
-    public class FloatArraySerializer : ISerializer<float[]>
+    /*public class FloatArraySerializer : ISerializer<float[]>
     {
         public string Serialize(float[] value) => throw new NotImplementedException();
 
@@ -205,5 +205,5 @@ namespace AngryWasp.Serializer.Serializers
         public string Serialize(decimal[] value) => throw new NotImplementedException();
 
         public decimal[] Deserialize(string value) => throw new NotImplementedException();
-    }
+    }*/
 }
