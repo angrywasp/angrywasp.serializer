@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net48</TargetFrameworks>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
