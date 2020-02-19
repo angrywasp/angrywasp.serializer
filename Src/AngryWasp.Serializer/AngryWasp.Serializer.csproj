@@ -1,12 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-<Import Project="../AngryWasp.Serializer.targets" />
+  <Import Project="$(SolutionDir)External/AngryWasp.Build/AngryWasp.Build.Common.targets"/>
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <AssemblyName>AngryWasp.Serializer</AssemblyName>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../../External/AngryWasp.Logger/Src/AngryWasp.Logger/AngryWasp.Logger.csproj" />
-    <ProjectReference Include="../../External/AngryWasp.Helpers/Src/AngryWasp.Helpers/AngryWasp.Helpers.csproj" />
+    <ProjectReference Include="$(SolutionDir)External/AngryWasp.Logger/Src/AngryWasp.Logger/AngryWasp.Logger.csproj" />
+    <ProjectReference Include="$(SolutionDir)External/AngryWasp.Helpers/Src/AngryWasp.Helpers/AngryWasp.Helpers.csproj" />
   </ItemGroup>
 </Project>

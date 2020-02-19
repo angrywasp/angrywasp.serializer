@@ -13,7 +13,6 @@ namespace AngryWasp.Serializer
         private List<Type> allTypes = new List<Type>();
         private Dictionary<string, object> namespaces = new Dictionary<string, object>();
         private Dictionary<Type, Ns> reverseNsLookup = new Dictionary<Type, Ns>();
-        //private Serializer serializer;
 
         public Dictionary<string, object> Namespaces
         {
@@ -24,11 +23,6 @@ namespace AngryWasp.Serializer
         {
             get { return reverseNsLookup; }
         }
-
-        //public NamespaceBuilder(Serializer serializer)
-        //{
-            //this.serializer = serializer;
-        //}
 
         public void Run(object obj)
         {
@@ -80,10 +74,6 @@ namespace AngryWasp.Serializer
 
         protected void GetNamespace(object objectToSerialize, Type type, object value, bool preferBinarySerialization)
         {
-            //we do this because the type of value may not be the type 
-            //if (value != null)
-            //    type = value.GetType();
-
             Object_Type ot = ReflectionHelper.Instance.GetObjectType(type);
 
             switch (ot)

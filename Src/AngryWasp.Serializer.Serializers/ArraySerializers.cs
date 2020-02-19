@@ -30,7 +30,7 @@ namespace AngryWasp.Serializer.Serializers
     }
 
     //public class CharArraySerializer : ISerializer<char[]>
-    //do not impelement. a char[] is a string
+    //do not implement. a char[] is a string
 
     public class UshortArraySerializer : ISerializer<ushort[]>
     {
