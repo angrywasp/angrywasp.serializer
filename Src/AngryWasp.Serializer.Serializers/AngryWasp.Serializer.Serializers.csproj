@@ -5,6 +5,5 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="$(SolutionDir)Src/AngryWasp.Serializer/AngryWasp.Serializer.csproj" />
-    <ProjectReference Include="$(SolutionDir)External/AngryWasp.Helpers/Src/AngryWasp.Helpers/AngryWasp.Helpers.csproj" />
   </ItemGroup>
 </Project>
