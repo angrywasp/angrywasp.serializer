@@ -2,9 +2,20 @@
   <Import Project="../../External/AngryWasp.Build/AngryWasp.Build.Common.targets"/>
   <PropertyGroup>
     <OutputType>Library</OutputType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>AngryWasp.Serializer</PackageId>
+    <Title>$(PackageId)</Title>
+    <Version>2.0.0</Version>
+    <Authors>AngryWasp</Authors>
+    <PackageDescription>Serialization library</PackageDescription>
+    <PackageLicenseFile>AngryWasp.LICENSE.txt</PackageLicenseFile>
+    <RepositoryUrl>https://bitbucket.org/angrywasp/angrywasp.serializer</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../../External/AngryWasp.Logger/Src/AngryWasp.Logger/AngryWasp.Logger.csproj" />
-    <ProjectReference Include="../../External/AngryWasp.Helpers/Src/AngryWasp.Helpers/AngryWasp.Helpers.csproj" />
+    <None Include="../../External/AngryWasp.Build/LICENSE.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AngryWasp.Logger" Version="*"/>
+    <PackageReference Include="AngryWasp.Helpers" Version="*"/>
   </ItemGroup>
 </Project>
