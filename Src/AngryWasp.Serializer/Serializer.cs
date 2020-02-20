@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.IO;
 using AngryWasp.Logger;
 using AngryWasp.Helpers;
 
@@ -20,11 +19,7 @@ namespace AngryWasp.Serializer
 			if (isInitialized)
 				return;
 
-			string loc = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-
-			string assemblyPath = Path.Combine(loc, "AngryWasp.Serializer.Serializers.dll");
-			if (File.Exists(assemblyPath))
-				AddSerializerAssembly(assemblyPath);
+			AddSerializerAssembly(Assembly.GetExecutingAssembly());
 
 			isInitialized = true;
 		}
@@ -44,35 +39,40 @@ namespace AngryWasp.Serializer
 					return;
 				}
 
-				List<Type> types = new List<Type>();
-				types.AddRange(ReflectionHelper.Instance.GetTypesInheritingOrImplementing(a, typeof(ISerializer<>)));
-				types.AddRange(ReflectionHelper.Instance.GetTypesInheritingOrImplementing(a, typeof(IBinarySerializer<>)));
-
-				foreach (Type type in types)
-				{
-					Type[] interfaces = type.GetInterfaces();
-					foreach (Type i in interfaces)
-					{
-						Type g = i.IsGenericType ? i.GetGenericTypeDefinition() : i;
-						if (g == typeof(ISerializer<>))
-						{
-							serializers.Add(i.GetGenericArguments()[0], Activator.CreateInstance(type));
-							break;
-						}
-
-						if (g == typeof(IBinarySerializer<>))
-						{
-							binarySerializers.Add(i.GetGenericArguments()[0], Activator.CreateInstance(type));
-							break;
-						}
-					}
-				}
+				AddSerializerAssembly(a);
 
 				loadedAssemblies.Add(serializerAssembly);
 			}
 			catch (Exception ex)
 			{
 				Log.Instance.WriteFatalException(ex, $"Serializer.AddSerializerAssembly - Loading Failed '{serializerAssembly}'");
+			}
+		}
+
+		public static void AddSerializerAssembly(Assembly a)
+		{
+			List<Type> types = new List<Type>();
+			types.AddRange(ReflectionHelper.Instance.GetTypesInheritingOrImplementing(a, typeof(ISerializer<>)));
+			types.AddRange(ReflectionHelper.Instance.GetTypesInheritingOrImplementing(a, typeof(IBinarySerializer<>)));
+
+			foreach (Type type in types)
+			{
+				Type[] interfaces = type.GetInterfaces();
+				foreach (Type i in interfaces)
+				{
+					Type g = i.IsGenericType ? i.GetGenericTypeDefinition() : i;
+					if (g == typeof(ISerializer<>))
+					{
+						serializers.Add(i.GetGenericArguments()[0], Activator.CreateInstance(type));
+						break;
+					}
+
+					if (g == typeof(IBinarySerializer<>))
+					{
+						binarySerializers.Add(i.GetGenericArguments()[0], Activator.CreateInstance(type));
+						break;
+					}
+				}
 			}
 		}
 
