@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="$(SolutionDir)External/AngryWasp.Build/AngryWasp.Build.Common.targets"/>
+  <Import Project="../../External/AngryWasp.Build/AngryWasp.Build.Common.targets"/>
   <PropertyGroup>
     <OutputType>Library</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="$(SolutionDir)Src/AngryWasp.Serializer/AngryWasp.Serializer.csproj" />
+    <ProjectReference Include="../AngryWasp.Serializer/AngryWasp.Serializer.csproj" />
   </ItemGroup>
 </Project>

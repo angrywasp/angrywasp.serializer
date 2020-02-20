@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="$(SolutionDir)External/AngryWasp.Build/AngryWasp.Build.Common.targets"/>
+  <Import Project="../../External/AngryWasp.Build/AngryWasp.Build.Common.targets"/>
   <PropertyGroup>
     <OutputType>Library</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="$(SolutionDir)External/AngryWasp.Logger/Src/AngryWasp.Logger/AngryWasp.Logger.csproj" />
-    <ProjectReference Include="$(SolutionDir)External/AngryWasp.Helpers/Src/AngryWasp.Helpers/AngryWasp.Helpers.csproj" />
+    <ProjectReference Include="../../External/AngryWasp.Logger/Src/AngryWasp.Logger/AngryWasp.Logger.csproj" />
+    <ProjectReference Include="../../External/AngryWasp.Helpers/Src/AngryWasp.Helpers/AngryWasp.Helpers.csproj" />
   </ItemGroup>
 </Project>
